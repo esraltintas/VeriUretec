@@ -18,7 +18,7 @@ def self.randomchar(length = kacchar)
 end
 
 def self.randomdate(length = kactarih)
-	((('1'..'30').to_a).sort_by {rand}[0,1].join + "." + (('1'..'12').to_a).sort_by {rand}[0,1].join + "." + (('1990'..'2999').to_a).sort_by {rand}[0,1].join)  
+	((('01'..'30').to_a).sort_by {rand}[0,1].join + "." + (('01'..'12').to_a).sort_by {rand}[0,1].join + "." + (('1990'..'2999').to_a).sort_by {rand}[0,1].join)  
 end
 
 def self.randommail(length = kacmail)
