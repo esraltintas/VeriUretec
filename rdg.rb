@@ -22,7 +22,9 @@ def self.randomdate(length = kactarih)
 end
 
 def self.randommail(length = kacmail)
-	((0...4).map{ ('a'..'z').to_a[rand(29)] }.join + "@mail.com")
+	tld  = [".com", ".org", ".net", ".us", ".tl", ".tr"]
+	host = ["@mail", "@gmail", "@qmail", "@hotmail", "@kmail", "@ipsum"]
+	((0...4).map{ ('a'..'z').to_a[rand(29)] }.join + (host.to_a).sort_by {rand}[0,1].join + (tld.to_a).sort_by {rand}[0,1].join)
 end
 while (i<=satirsayisi)
 	j=1
