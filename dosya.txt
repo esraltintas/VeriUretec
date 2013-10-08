@@ -1,3 +1,3 @@
-index int char date email
-100 3 2 3 2
+index int char date email int char
+100 3 2 3 2 2 5 
 
