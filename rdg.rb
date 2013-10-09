@@ -88,7 +88,7 @@ while (i<=howmuchindex)
                 mail[j-1] = self.randommail(howmuchmail)
 		j = j+1
         end          
-	gdata.puts("#{i} #{int * ","} #{char * ","} #{date * ","} #{mail * ","}") # Rasgele olusturulmus degerleri olusturdugum dosya icine yazdirdim
+	gdata.puts("#{i} #{int.join} #{char.join} #{date.join}#{mail.join}") # Rasgele olusturulmus degerleri olusturdugum dosya icine yazdirdim
 	i = i +1
 end
 gdata.close
