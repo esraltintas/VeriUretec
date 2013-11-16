@@ -1,7 +1,10 @@
-$time = Time.now
+$date = ((('2000'..'2013').to_a).sort_by {rand}[0,1].join + "-" + (('01'..'12').to_a).sort_by {rand}[0,1].join + "-" + (('01'..'28').to_a).sort_by {rand}[0,1].join)
+$time = ((('00'..'23').to_a).sort_by {rand}[0,1].join + ":" + (('00'..'59').to_a).sort_by {rand}[0,1].join + ":" + (('00'..'59').to_a).sort_by {rand}[0,1].join)
+$ms = (('100'..'1000').to_a).sort_by {rand}[0,1].join
 $port = (('1000'..'65536').to_a).sort_by {rand}[0,1].join
 $ip = ((('0'..'250').to_a).sort_by {rand}[0,1].join + "." + (('0'..'250').to_a).sort_by {rand}[0,1].join + "." + (('0'..'250').to_a).sort_by {rand}[0,1].join + "." + (('0'..'250').to_a).sort_by {rand}[0,1].join)
-
+pv=[10,20] #preference-value
+$randpv = pv[Random.rand(0..1)]
 class BIND
 	
 	def URL
@@ -13,28 +16,30 @@ class BIND
 
 	
 	def arecord
-		return  "#$time queries: info: client #$ip #  #$port  :  \ " + "\n  query:" +  URL() + " IN A -"
+		return  "#$date #$time.#$ms queries: info: client #$ip #  #$port  :  \ " + "\n  query:" +  URL() + " IN A #$ip"
 	end
 
-	#def cname
-	#	return "mail IN CNAME www\n" + arecord()
+	def cname
+		return "#$date #$time.#$ms queries: info: client #$ip #  #$port  :  \ " + "\n  query:"+ URL() + "mail IN CNAME " + URL()
 		
-	#end
+	end
 
-	#def mx
-	#	return "IN MX 10 mail." + mail()
-	#end
+	def mx
+		url = URL()
+		return "#$date #$time.#$ms queries: info: client #$ip #  #$port  :  \ " + "\n  query:" +  url + " IN MX " + "#$randpv " + url
+	end
 	
-	#def nameserver
-	#	return "IN NS ns." + mail() + "\nns " + arecord()	
-	#end
+	def nameserver
+		return "#$date #$time.#$ms queries: info: client #$ip #  #$port  :  \ " + "\n  query:"+"IN NS " + URL()
+	end
 		
 end
 
 bind =BIND.new
 puts bind.arecord()
-
-
+puts bind.mx()
+puts bind.cname()
+puts bind.nameserver()
 
 
 	
