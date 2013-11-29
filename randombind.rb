@@ -3,7 +3,7 @@ def time_rand from = 0.0, to = Time.now
   Time.at(from + rand * (to.to_f - from.to_f))
 end
 $randpv = pv[Random.rand(0..1)]
-$rand_date = time_rand Time.local(2010, 7, 1), Time.now
+$rand_date = time_rand Time.now, Time.local(2014,7,1)
 
 class BIND
 	def port
@@ -11,7 +11,8 @@ class BIND
 	end
 
 	def time
-		next_date = time_rand Time.local(2010, 7, 1), $rand_date
+		next_date = time_rand $rand_date, Time.local(2014,7,1)
+		$rand_date = next_date
 	end	
 
 	def ip
