@@ -27,7 +27,7 @@ class Function
 	end
 
 	def URL
-		tld  = [".com", ".org", ".net", ".us", ".tl", ".tr"]
+		tld  = [".com", ".org", ".net", ".us", ".tl", "com.tr", ".biz", ".pw", ".info", ".gen.tr", ".web.tr", " .co", ".eu"]
 
 		url = ((('0'..'10').to_a).sort_by {rand}[0,1].join + "." + (0...8).map{ ('a'..'z').to_a[rand(29)] }.join  + (tld.to_a).sort_by {rand}[0,1].join)
 	end
